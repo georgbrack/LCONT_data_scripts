@@ -20,7 +20,6 @@ def open_LARA_zarr(filepath: str):
         height_av (arr): A xarray-DataArray (shape = (nor. of particles, nr. of timestepes)) containing height above ground data for each particle
         hmix (arr): A 3 dimensional numpy array containing the temporal evolution of the mixing layer height on a 0.5° x 0.5° grid
     '''
-    print(f'Opening and loadning full remote data for: {filepath}')
     variables = ['lon_av', 'lat_av', 'z_av', 'hmix']
     ds_dict = {var : xr.open_zarr(f'{filepath}/{var}') for var in variables}
     traj = xr.merge([ds_dict[var] for var in variables])
@@ -28,7 +27,6 @@ def open_LARA_zarr(filepath: str):
     lat_av = traj.lat_av.fillna(-1.)
     height_av = traj.z_av.fillna(-1.)
     hmix = traj.hmix.fillna(-1.)
-    print("Data loaded into RAM.")
 
     return lon_av, lat_av, height_av, hmix
 
@@ -50,9 +48,7 @@ def calculate_mixing_layer_height(hmix, longitude_av, latitude_av) -> np.ndarray
 
     #For each timestep, interpolate the position of the particle to the grid
     for itime in range(len(mixing_layer_height[0, :])):
-        #print(f'looping: step {itime}')
-        hmix_inter = interpolate2d(hmix, itime) # hmix is the 2d field from the LARA data
-        #print(f'interpolation for itime={itime} done')
+        hmix_inter = interpolate2d(hmix, itime) 
         mixing_layer_height[:, itime]  = hmix_inter(latitude_av[:, itime], longitude_av[:, itime], grid=False) # lat are the latitudes of the particles (particles, timesteps)
         mini = np.min(hmix).values # The interpolation sometimes does weird stuff, so I set a max and min based on the topo data
         maxi = np.max(hmix).values
@@ -164,10 +160,10 @@ def save_arrays(traveltime_total: np.ndarray, particle_counter: np.ndarray, last
     Takes an array and saves it (to the specified path) as an xarray dataset
     
     Parameters:
-        traveltime_total (arr): A 2 dimensional numpy array containing the total travel time over land for each gridpoint
-        particle_counter (arr): A 2 dimensional numpy array containing the particle count for each gridpoint
-        last_timestep (arr): A 1 dimensional numpy array containing the last timestep data for each particle
-        savepath (str): 
+        traveltime_total (np.ndarray): A 2 dimensional numpy array containing the total travel time over land for each gridpoint
+        particle_counter (np.ndarray): A 2 dimensional numpy array containing the particle count for each gridpoint
+        last_timestep (np.ndarray): A 1 dimensional numpy array containing the last timestep data for each particle, if None it will not be saved
+        savepath (str): The path (without file ending) where the dataset should be saved
         resolution (float): Resolution of the traveltime_total and particle_counter array
     Returns:
         None
@@ -207,7 +203,17 @@ def calculation(directory: str,
                 init: bool,
                 last_timestep: np.ndarray) -> None:
     """
-    Uses all other functions to calculate travel time for a specific list of years.
+    Uses all other functions to calculate travel time for a specific list of years. It will create a directory for each year in the output_base_path and save the results there.
+
+    Parameters:
+        directory (str): The base directory where the LARA data for the specific interval is stored, can be a URL
+        sea_ice_data (xr.Dataset): An xarray dataset containing monthly sea ice and land data
+        output_base_path (str): The base path where the output directories and files will be saved
+        years_to_process (list): A list of years (as strings) to process
+        init (bool): True when the init file is being calculated, affects the counting of time
+        last_timestep (np.ndarray): Used when init = False, so that time over land is counted correctly
+    Returns:
+        None
     """
 
     # setting resolution and bins
