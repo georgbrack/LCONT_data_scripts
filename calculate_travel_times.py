@@ -8,7 +8,7 @@ import sys
 
 
 def open_LARA_zarr(filepath: str):
-    '''
+    """
     Opens a file as an xarray-dataset and extracts 'lon_av', 'lat_av', 'z_av' and 'hmix'.
     Fills NaN-Values with -1
     Parameters:
@@ -19,7 +19,7 @@ def open_LARA_zarr(filepath: str):
         lat_av (arr): A xarray-DataArray (shape = (nr. of particles, nr. of timesteps)) conatining latitudinal data for each particle
         height_av (arr): A xarray-DataArray (shape = (nor. of particles, nr. of timestepes)) containing height above ground data for each particle
         hmix (arr): A 3 dimensional numpy array containing the temporal evolution of the mixing layer height on a 0.5° x 0.5° grid
-    '''
+    """
     variables = ['lon_av', 'lat_av', 'z_av', 'hmix']
     ds_dict = {var : xr.open_zarr(f'{filepath}/{var}') for var in variables}
     traj = xr.merge([ds_dict[var] for var in variables])
@@ -80,6 +80,7 @@ def get_is_land(landmask: xr.Dataset, lat: np.ndarray, lon: np.ndarray, time: da
     Returns:
         is_land_ice (np.ndarray): An array (with the same shape as lat/lon) that contains True/False values depending on if the particle was over land/sea ice or water
     """
+
     particle_ds = xr.Dataset({"lat": ("points", lat), "lon": ("points", lon)})
     return landmask.sel(latitude=particle_ds.lat, longitude=particle_ds.lon, time=time, method='nearest').siconc.values.astype(bool)
 
@@ -156,7 +157,7 @@ def calculate_total_traveltime_particlecounter(longitude_av: np.ndarray,
 
 
 def save_arrays(traveltime_total: np.ndarray, particle_counter: np.ndarray, last_timestep: np.ndarray, savepath: str, resolution: float) -> None:
-    '''
+    """
     Takes an array and saves it (to the specified path) as an xarray dataset
     
     Parameters:
@@ -167,7 +168,8 @@ def save_arrays(traveltime_total: np.ndarray, particle_counter: np.ndarray, last
         resolution (float): Resolution of the traveltime_total and particle_counter array
     Returns:
         None
-    '''
+    """
+    
     # preparing coordinates for dataset
     lon = np.arange(-180, 180, step=resolution)
     lat = np.arange(-90, 90, step=resolution)
