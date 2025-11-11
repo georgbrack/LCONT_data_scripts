@@ -24,14 +24,14 @@ The core Python dependencies required to run this code are:
 
 ## Workflow (How to Run)
 
-1.  **Step 1:** Run `calculate_travel_times.py` on the raw LARA dataset. This is a long, parallel process that creates many intermediate monthly files. Alternatively, download the dataset `residence_time.nc` directly.
-2.  **Step 2:** Run the `create_final_dataset.ipynb` notebook to aggregate all intermediate files into `residence_time.nc`.
+1.  **Step 1:** Run `calculate_travel_times.py` on the raw LARA dataset. This is a long, parallel process that creates intermediate files for each month processed.
+2.  **Step 2:** Run the `create_final_dataset.ipynb` notebook to aggregate all intermediate files into `residence_time.nc`. As an alternative to this and the previous step, download the dataset `residence_time.nc` directly.
 3.  **Step 3:** Run `Fig_1_2.ipynb` and `Fig_3.ipynb` to reproduce the figures from the paper.
 
 ## Citation
 
-When using this dataset or code, please cite both the original publication and this Zenodo archive.
+When using this dataset or code, please cite the original publication
 
 * **Paper:** 
 Brack, G., Dütsch, M., & Stohl, A. (manuscript submitted). A new climatology of continentality based on Lagrangian air mass travel times from the ocean. Geophysical Research Letters.
-* **This Dataset/Code:** 
+* **This Dataset/Code:**: 
