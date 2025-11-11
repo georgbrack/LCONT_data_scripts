@@ -33,5 +33,5 @@ The core Python dependencies required to run this code are:
 When using this dataset or code, please cite the original publication
 
 * **Paper:** 
-Brack, G., Dütsch, M., & Stohl, A. (manuscript submitted). A new climatology of continentality based on Lagrangian air mass travel times from the ocean. Geophysical Research Letters.
-* **This Dataset/Code:**: 
+Brack, G., Dütsch, M., & Stohl, A. (manuscript submitted). A new climatology of continentality based on Lagrangian air mass travel times from the ocean. Geophysical Research Letters. 
+* **This Dataset/Code:** Brack, G., Dütsch, M., & Stohl, A. (2025). Supplementary data and code for "A new climatology of continentality based on Lagrangian air mass travel times from the ocean" [Data set]. Zenodo. https://doi.org/10.5281/zenodo.17568880
