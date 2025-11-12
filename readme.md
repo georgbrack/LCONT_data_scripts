@@ -1,5 +1,9 @@
 # Code Supplement for:  "A new climatology of continentality based on Lagrangian air mass travel times from the ocean"
 
+This repository is a copy of the Zenodo repository found under the following link:
+
+[https://zenodo.org/records/17568880](https://zenodo.org/records/17568880) (DOI: 10.5281/zenodo.17568880)
+
 This repository contains all code and data necessary to reproduce the analyses and figures presented in the paper.
 
 The main dataset is `residence_time.nc`. The code is provided as a Python script and a series of Jupyter Notebooks, detailing the workflow from raw data processing to final figure generation.
