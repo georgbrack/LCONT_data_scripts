@@ -22,6 +22,8 @@ The core Python dependencies required to run this code are:
 * `jupyter` (for running the notebooks)
 * `matplotlib` / `cartopy`
 
+To determine whether a particle is above sea or land, the hourly dynamic sea-ice concentration included in ERA5 was used, please refer to Hersbach et al. on how to obtain the data.
+
 ## Workflow (How to Run)
 
 1.  **Step 1:** Run `calculate_travel_times.py` on the raw LARA dataset. This is a long, parallel process that creates intermediate files for each month processed.
