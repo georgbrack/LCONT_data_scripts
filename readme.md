@@ -39,5 +39,5 @@ To determine whether a particle is above sea or land, the hourly dynamic sea-ice
 When using this dataset or code, please cite the original publication
 
 * **Paper:** 
-Brack, G., Dütsch, M., & Stohl, A. (manuscript submitted). A new climatology of continentality based on Lagrangian air mass travel times from the ocean. Geophysical Research Letters. 
-* **This Dataset/Code:** Brack, G., Dütsch, M., & Stohl, A. (2025). Supplementary data and code for "A new climatology of continentality based on Lagrangian air mass travel times from the ocean" [Data set]. Zenodo. https://doi.org/10.5281/zenodo.17568880
+Brack, G., Dütsch, M., & Stohl, A. (2026). A new climatology of continentality based on Lagrangian Air mass travel times from the ocean. _Geophysical Research Letters_, 53, e2025GL120627. [https://doi.org/10.1029/2025GL120627](https://doi.org/10.1029/2025GL120627)
+* **This Dataset/Code:** Brack, G., Dütsch, M., & Stohl, A. (2025). Supplementary data and code for "A new climatology of continentality based on Lagrangian air mass travel times from the ocean" [Data set]. Zenodo. [https://doi.org/10.5281/zenodo.17568880](https://doi.org/10.5281/zenodo.17568880)
